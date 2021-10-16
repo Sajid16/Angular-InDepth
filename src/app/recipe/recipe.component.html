@@ -15,18 +15,33 @@
         <form #signInForm="ngForm" (ngSubmit)="formSubmit(signInForm)">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" ngModel>
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="email" ngModel required #email="ngModel" email>
+                <span *ngIf="email.touched && !email.valid">Please enter valid email address.</span>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" name="password" ngModel>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password" ngModel required #password="ngModel">
+                <span *ngIf="password.touched && !password.valid">Please enter password.</span>
             </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="terms" ngModel>
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="terms" ngModel required #terms="ngModel">
                 <label class="form-check-label" for="exampleCheck1">Agree terms and conditions</label>
+                <span *ngIf="terms.touched && !terms.valid">You have to accept all the conditions.</span>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="flexRadioDisabled">
+                <label class="form-check-label" for="flexRadioDisabled">
+                    Male
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="flexRadioDisabled">
+                <label class="form-check-label" for="flexRadioCheckedDisabled">
+                    Female
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!signInForm.valid">Submit</button>
         </form>
     </div>
 </div>
