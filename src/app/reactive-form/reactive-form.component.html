@@ -1,0 +1,17 @@
+<h3>Reactive Form with Validations</h3>
+<form [formGroup]="checkoutForm" (ngSubmit)="checkoutPost()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="reactiveFormEmail1" aria-describedby="emailHelp" formControlName="emailField">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Amount</label>
+      <input type="number" class="form-control" id="reactiveFormPassword1" formControlName="amountField">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="reactiveFormCheck1" formControlName="termField">
+      <label class="form-check-label" for="exampleCheck1">Accept terms & conditions</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Checkout</button>
+  </form>
