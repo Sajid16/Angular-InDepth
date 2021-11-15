@@ -3,7 +3,8 @@
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
       <input type="email" class="form-control" id="reactiveFormEmail1" aria-describedby="emailHelp" formControlName="emailField">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      <!-- <span *ngIf="checkoutForm.get('emailField').touched && !checkoutForm.get('emailField').hasError('required')">Please enter email address.</span>
+      <span *ngIf="checkoutForm.get('emailField').touched && !checkoutForm.get('emailField').hasError('email')">Please enter valid email address.</span> -->
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Amount</label>
@@ -13,5 +14,5 @@
       <input type="checkbox" class="form-check-input" id="reactiveFormCheck1" formControlName="termField">
       <label class="form-check-label" for="exampleCheck1">Accept terms & conditions</label>
     </div>
-    <button type="submit" class="btn btn-primary">Checkout</button>
+    <button type="submit" class="btn btn-primary" [disabled] = !checkoutForm.valid>Checkout</button>
   </form>
