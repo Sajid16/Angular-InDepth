@@ -1,18 +1,33 @@
 <h3>Reactive Form with Validations</h3>
 <form [formGroup]="checkoutForm" (ngSubmit)="checkoutPost()">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="reactiveFormEmail1" aria-describedby="emailHelp" formControlName="emailField">
-      <!-- <span *ngIf="checkoutForm.get('emailField').touched && !checkoutForm.get('emailField').hasError('required')">Please enter email address.</span>
-      <span *ngIf="checkoutForm.get('emailField').touched && !checkoutForm.get('emailField').hasError('email')">Please enter valid email address.</span> -->
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Amount</label>
-      <input type="number" class="form-control" id="reactiveFormPassword1" formControlName="amountField">
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="reactiveFormCheck1" formControlName="termField">
-      <label class="form-check-label" for="exampleCheck1">Accept terms & conditions</label>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled] = !checkoutForm.valid>Checkout</button>
-  </form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="reactiveFormEmail1" aria-describedby="emailHelp"
+      formControlName="emailField">
+    <mat-error *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)">
+      <ng-container *ngIf="emailField.hasError('minlength')">Minimum 5 Characters.</ng-container>
+      <ng-container *ngIf="emailField.hasError('maxlength')">Maximum 10 Characters.</ng-container>
+      <ng-container *ngIf="emailField.hasError('required')">Email is required.</ng-container>
+      <ng-container *ngIf="emailField.hasError('email')">Enter Valid Email.</ng-container>
+    </mat-error>
+    <!-- <span *ngIf="checkoutForm.get('emailField').touched && !checkoutForm.get('emailField').hasError('required')">Please
+      enter email address.</span>
+    <span *ngIf="checkoutForm.get('emailField').touched && !checkoutForm.get('emailField').hasError('email')">Please
+      enter valid email address.</span> -->
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Amount</label>
+    <input type="number" class="form-control" id="reactiveFormPassword1" formControlName="amountField">
+    <mat-error *ngIf="amountField.invalid && (amountField.dirty || amountField.touched)">
+      <ng-container *ngIf="emailField.hasError('required')">Amount is required.</ng-container>
+    </mat-error>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="reactiveFormCheck2" formControlName="termField">
+    <label class="form-check-label" for="exampleCheck2">Accept terms & conditions</label>
+    <mat-error *ngIf="amountField.invalid && (amountField.dirty || amountField.touched)">
+      <ng-container *ngIf="emailField.hasError('requiredTrue')">Acceptance is required.</ng-container>
+    </mat-error>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]=!checkoutForm.valid>Checkout</button>
+</form>

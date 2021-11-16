@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-form',
@@ -19,9 +19,9 @@ export class ReactiveFormComponent implements OnInit {
     //   termField: new FormControl(),
     // });
     this.checkoutForm = this.formBuilder.group({
-      emailField: ['', [Validators.required, Validators.email, Validators.minLength(5), Validators.maxLength(10)]],
+      emailField: ['', [Validators.minLength(5), Validators.maxLength(10), Validators.required, Validators.email]],
       amountField: ['', Validators.required],
-      termField: ['', Validators.required],
+      termField: ['', Validators.requiredTrue],
     });
   
   }
@@ -30,9 +30,13 @@ export class ReactiveFormComponent implements OnInit {
 
   }
 
-  // get f(): { [key: string]: AbstractControl } {
-  //   return this.checkoutForm.controls;
-  // }
+  get emailField() {
+    return this.checkoutForm.get('emailField');
+  }
+
+  get amountField() {
+    return this.checkoutForm.get('amountField');
+  }
 
   checkoutPost(){
     console.log(this.checkoutForm.value);
