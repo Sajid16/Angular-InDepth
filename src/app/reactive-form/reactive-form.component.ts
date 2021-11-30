@@ -9,7 +9,11 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 export class ReactiveFormComponent implements OnInit {
 
   checkoutForm: FormGroup;
-  // submitted = false;
+  getUserValues = {
+      "Email": "sajid.mahboob16@gmail.com",
+      "amount": 100,
+      "terms": true
+  };
 
   constructor(private formBuilder: FormBuilder) {
     
@@ -19,7 +23,7 @@ export class ReactiveFormComponent implements OnInit {
     //   termField: new FormControl(),
     // });
     this.checkoutForm = this.formBuilder.group({
-      emailField: ['', [Validators.minLength(5), Validators.maxLength(10), Validators.required, Validators.email]],
+      emailField: ['', [Validators.minLength(5), Validators.maxLength(25), Validators.required, Validators.email]],
       amountField: ['', Validators.required],
       termField: ['', Validators.requiredTrue],
     });
@@ -27,7 +31,18 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.checkoutForm.setValue({
+    //   emailField: this.getUserValues.Email,
+    //   amountField: this.getUserValues.amount,
+    //   termField: this.getUserValues.terms
+    // });
 
+    // this.setValueFunc();
+    // this.checkoutForm.patchValue({
+    //   emailField: this.getUserValues.Email,
+    //   // amountField: this.getUserValues.amount,
+    //   termField: this.getUserValues.terms
+    // });
   }
 
   get emailField() {
@@ -40,6 +55,27 @@ export class ReactiveFormComponent implements OnInit {
 
   checkoutPost(){
     console.log(this.checkoutForm.value);
+    this.resetForm();
+  }
+
+  resetForm(){
+    this.checkoutForm.reset();
+  }
+
+  setValueFunc(){
+    this.checkoutForm.setValue({
+      emailField: this.getUserValues.Email,
+      amountField: this.getUserValues.amount,
+      termField: this.getUserValues.terms
+    });
+  }
+
+  patchValueFunc(){
+    this.checkoutForm.patchValue({
+      emailField: this.getUserValues.Email,
+      // amountField: this.getUserValues.amount,
+      termField: this.getUserValues.terms
+    });
   }
 
 }
