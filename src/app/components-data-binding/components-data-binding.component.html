@@ -1,0 +1,15 @@
+<!-- data binding from child to parent using custom property binding(event binding) with @Output() decorator in child component-->
+<!-- <app-cockpit (serverCreated)="onServerCreated($event)" (blueprintCreated)="onBlueprintCreated($event)"></app-cockpit> -->
+
+<!-- data binding from child to parent using custom property binding(event binding) with @Output() decorator in child component-->
+<app-cockpit (svCreated)="onServerCreated($event)" (bpCreated)="onBlueprintCreated($event)"></app-cockpit>
+
+<hr>
+
+<!-- data binding from parent to child component with property binding(also known as custom property binding) and @Input() decorator
+    here [element] is defined same as defined in child component
+-->
+<!-- <app-server-element *ngFor="let serverElement of serverElements" [element]="serverElement"></app-server-element> -->
+
+<!-- custom property binding with alias name. not same as both in parent and child component -->
+<app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement"></app-server-element>

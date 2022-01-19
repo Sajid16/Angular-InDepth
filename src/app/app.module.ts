@@ -45,6 +45,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentsDataBindingComponent } from './components-data-binding/components-data-binding.component';
+import { CockpitComponent } from './cockpit/cockpit.component';
+import { ServerElementComponent } from './server-element/server-element.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    ComponentsDataBindingComponent,
+    CockpitComponent,
+    ServerElementComponent
   ],
   imports: [BrowserAnimationsModule,
     BrowserModule,
