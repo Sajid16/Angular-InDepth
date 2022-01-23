@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-components-data-binding',
   templateUrl: './components-data-binding.component.html',
-  styleUrls: ['./components-data-binding.component.scss']
+  styleUrls: ['./components-data-binding.component.scss'],
+  // encapsulation: ViewEncapsulation.None // can be emulated(default), none, native
 })
 export class ComponentsDataBindingComponent implements OnInit {
 
