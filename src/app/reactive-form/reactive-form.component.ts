@@ -14,11 +14,26 @@ import { Subscription } from 'rxjs';
 })
 export class ReactiveFormComponent implements OnInit {
   checkoutForm: FormGroup;
-  getUserValues = {
-    Email: 'sajid.mahboob16@gmail.com',
-    amount: 100,
-    terms: true,
-  };
+  getUserValues = [
+    {
+      id: 1,
+      Email: 'sajid.mahboob1@gmail.com',
+      amount: 100,
+      terms: true,
+    },
+    {
+      id: 2,
+      Email: 'sajid.mahboob2@gmail.com',
+      amount: 200,
+      terms: true,
+    },
+    {
+      id: 3,
+      Email: 'sajid.mahboob3@gmail.com',
+      amount: 300,
+      terms: true,
+    },
+  ];
   emailFSub: Subscription;
 
   constructor(private formBuilder: FormBuilder) {
@@ -81,19 +96,25 @@ export class ReactiveFormComponent implements OnInit {
     this.checkoutForm.reset();
   }
 
-  setValueFunc() {
+  setValueFunc(id: number) {
+    this.checkoutForm.reset();
+    let obj = this.getUserValues.find((o) => o.id === id);
+    console.log(obj);
+    obj.Email = 'test@gmail.com';
     this.checkoutForm.setValue({
-      emailField: this.getUserValues.Email,
-      amountField: this.getUserValues.amount,
-      termField: this.getUserValues.terms,
+      emailField: obj.Email,
+      amountField: obj.amount,
+      termField: obj.terms,
     });
   }
 
-  patchValueFunc() {
+  patchValueFunc(id: number) {
+    this.checkoutForm.reset();
+    let obj = this.getUserValues.find((o) => o.id === id);
     this.checkoutForm.patchValue({
-      emailField: this.getUserValues.Email,
+      emailField: obj.Email,
       // amountField: this.getUserValues.amount,
-      termField: this.getUserValues.terms,
+      termField: obj.terms,
     });
   }
 }
